@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Download Dialog with ProgressBar</title>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<style>
+.dialog-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+}
+
+.dialog-box {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.progress-bar {
+    width: 300px; 
+    height: 20px; 
+    background-color: #f0f0f0;
+    border-radius: 10px; 
+    overflow: hidden;
+}
+
+.progress {
+    width: 0%;
+    height: 100%;
+    background-color: #4caf50;
+}
+
+.progress-label {
+    text-align: center;
+    margin-top: 10px;
+}
+</style>
+</head>
+<body>
+
+<button id="openDialog">Unduh</button>
+
+<div id="downloadDialog" class="dialog-overlay">
+  <div class="dialog-box">
+    <div class="progress-bar">
+      <div class="progress"></div>
+    </div>
+    <div class="progress-label">Mengunduh...</div>
+  </div>
+</div>
+
+<script>
+$(document).ready(function(){
+    // Fungsi untuk menampilkan jendela dialog
+    $('#openDialog').on('click', function() {
+        $('#downloadDialog').fadeIn();
+
+        // Memulai simulasi unduhan
+        startDownload();
+    });
+
+    // Fungsi untuk memulai simulasi unduhan
+    function startDownload() {
+        var progress = 0;
+        var progressBar = $('.progress');
+        var progressLabel = $('.progress-label');
+
+        var interval = setInterval(function() {
+            progress += Math.random() * 10; // Menambahkan nilai acak ke progress
+            progressBar.css('width', progress + '%'); // Memperbarui lebar progress bar
+            progressLabel.text(Math.round(progress) + '%'); // Memperbarui label progress
+
+            if (progress >= 100) {
+                clearInterval(interval); // Menghentikan simulasi saat progress mencapai 100%
+                setTimeout(function() {
+                    closeDownloadDialog(); // Menutup jendela dialog setelah beberapa saat
+                }, 1000);
+            }
+        }, 500); 
+    }
+
+    // Fungsi untuk menutup jendela dialog
+    function closeDownloadDialog() {
+        $('#downloadDialog').fadeOut();
+    }
+});
+</script>
+
+</body>
+</html>

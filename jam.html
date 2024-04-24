@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <style>
+        body {
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
+  text-align: center;
+  padding-top: 50px;
+}
+
+#clock {
+  font-size: 48px;
+  font-weight: bold;
+  color: #333;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: inline-block;
+}
+    </style>
+<body>
+
+<h2>Jam Real Time</h2>
+
+<p id="clock"></p>
+
+<script type="text/javascript">
+function showTime(){
+  let date = new Date();
+  let options = {
+    timeZone: 'Asia/Jakarta'
+  };
+  let clock = document.getElementById("clock");
+  clock.innerHTML = date.toLocaleString('id-ID', options);
+  setTimeout(showTime,1000);
+}
+showTime();
+</script>
+
+</body>
+</html>

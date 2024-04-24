@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contoh Pemanfaatan jQuery Sederhana</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<style>
+  .hidden {
+    display: none;
+  }
+</style>
+</head>
+<body>
+
+<h2>Contoh Pemanfaatan jQuery Sederhana</h2>
+
+<!-- Tombol untuk menyembunyikan dan menampilkan teks -->
+<button id="toggleButton">Toggle Teks</button>
+
+<!-- Teks yang akan disembunyikan atau ditampilkan -->
+<p id="toggleText">Ini adalah teks yang akan disembunyikan atau ditampilkan.</p>
+
+<script>
+$(document).ready(function(){
+    // Mengatur aksi ketika tombol diklik
+    $('#toggleButton').on('click', function() {
+        $('#toggleText').toggle(); // Menyembunyikan atau menampilkan teks saat tombol diklik
+    });
+});
+</script>
+
+</body>
+</html>
